@@ -1,0 +1,5 @@
+name: 'Auto Save Form'
+type: module
+description: 'Auto save form'
+core: 8.x
+package: 'Custom'
