@@ -31,11 +31,7 @@
 
   var browserStorage = {};
 
-  /**
-   * Check if local storage or other browser storage is available
-   *
-   * @return Boolean
-   */
+  // Check if local storage or other browser storage is available.
   browserStorage.isAvailable = function () {
     if (typeof $.jStorage === "object") {
       return true;
