@@ -33,31 +33,26 @@
 
   // Check if local storage or other browser storage is available.
   browserStorage.isAvailable = function () {
-    if (typeof $.jStorage === "object") {
+    if (typeof $.jStorage === 'object') {
       return true;
     }
     try {
       return localStorage.getItem;
-    } catch (e) {
+    } 
+    catch (e) {
       return false;
     }
   };
 
-  /**
-   * Set data to browser storage
-   *
-   * @param [String] key
-   * @param [String] value
-   *
-   * @return Boolean
-   */
+  // Set data to browser storage.
   browserStorage.set = function (key, value) {
     if (typeof $.jStorage === "object") {
       $.jStorage.set(key, value + "");
     } else {
       try {
         localStorage.setItem(key, value + "");
-      } catch (e) {
+      }
+      catch (e) {
         //QUOTA_EXCEEDED_ERR
       }
     }
