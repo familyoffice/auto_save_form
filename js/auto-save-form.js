@@ -151,18 +151,19 @@
             self.bindReleaseData();
           }
 
-          if (!params.started[ this.getInstanceIdentifier() ]) {
+          if (!params.started[this.getInstanceIdentifier()]) {
             if (self.isCKEditorPresent()) {
               var intervalId = setInterval(function () {
                 if (CKEDITOR.isLoaded) {
                   clearInterval(intervalId);
                   self.bindSaveData();
-                  params.started[ self.getInstanceIdentifier() ] = true;
+                  params.started[self.getInstanceIdentifier()] = true;
                 }
               }, 100);
-            } else {
+            }
+            else {
               self.bindSaveData();
-              params.started[ self.getInstanceIdentifier() ] = true;
+              params.started[self.getInstanceIdentifier()] = true;
             }
           }
         },
@@ -174,7 +175,8 @@
               CKEDITOR.isLoaded = true;
             });
             return true;
-          } else {
+          }
+          else {
             return false;
           }
         },
@@ -203,8 +205,8 @@
                 return true;
               }
               var field = $(this);
-              var prefix = (self.options.locationBased ? self.href : "") + targetFormIdAndName + getElementIdentifier(field) + self.options.customKeySuffix;
-              if (field.is(":text") || field.is("textarea")) {
+              var prefix = (self.options.locationBased ? self.href : '') + targetFormIdAndName + getElementIdentifier(field) + self.options.customKeySuffix;
+              if (field.is(':text') || field.is('textarea')) {
                 if (!self.options.timeout) {
                   self.bindSaveDataImmediately(field, prefix);
                 }
@@ -226,7 +228,7 @@
 
             self.findFieldsToProtect($(this)).each(function () {
               var field = $(this);
-              if ($.inArray(this, self.options.excludeFields) !== -1 || (field.attr("name") === undefined && field.attr("id") === undefined)) {
+              if ($.inArray(this, self.options.excludeFields) !== -1 || (field.attr('name') === undefined && field.attr('id') === undefined)) {
                 // Returning non-false is the same as a continue statement in a for loop; it will skip immediately to the next iteration.
                 return true;
               }
