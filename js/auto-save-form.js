@@ -54,7 +54,7 @@
         localStorage.setItem(key, value + '');
       }
       catch (e) {
-      //QUOTA_EXCEEDED_ERR
+      // QUOTA_EXCEEDED_ERR
       }
     }
   };
@@ -296,7 +296,7 @@
                 return true;
               }
               var field = $(this);
-              var prefix = (self.options.locationBased ? self.href : "") + targetFormIdAndName + getElementIdentifier(field) + self.options.customKeySuffix;
+              var prefix = (self.options.locationBased ? self.href : '') + targetFormIdAndName + getElementIdentifier(field) + self.options.customKeySuffix;
               var resque = self.browserStorage.get(prefix);
               if (resque !== null) {
                 self.restoreFieldsData(field, resque);
