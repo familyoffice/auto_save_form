@@ -2,8 +2,8 @@ auto_save_form.auto_save_forms_id_form:
   path: '/admin/config/auto_save_form/autosaveformsid'
   defaults:
     _form: '\Drupal\auto_save_form\Form\AutoSaveFormsIdForm'
-    _title: 'Auto Save Form Ids'
+    _title: 'Configure Autosave form Id'
   requirements:
-    _permission: 'access administration pages'
+    _permission: 'administer site configuration'
   options:
     _admin_route: TRUE
