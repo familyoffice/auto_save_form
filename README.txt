@@ -1,19 +1,22 @@
 INTRODUCTION
 -------------
+
 This module enables functionality to persist form's data in browser's local
 storage and never lose it on occasional tabs closing, browser crashes and other
 disasters!
 
-The plugin listens for the form change and keyup events and then stores 
+This plugin listens for the form change and keyup events and then stores 
 the values of your form controls (except password input) in the local 
 storage and automatically clears the storage on form submit or reset.
 
 REQUIREMENTS
 -------------
-No Requirement.
+
+This module not requires the any module.
 
 CONFIGURATION
 -------------
+
 Goto /admin/config/auto_save_form/autosaveformsid of your drupal installation
    enter comma separated drupal form ids
 
@@ -26,6 +29,9 @@ INSTALLATION
 2) Go to Administer -> Modules to install module. If the (Drupal core) Field UI
    module is not enabled, do so.
 
-MAINTAINER
+MAINTAINERS
 ----------
-Rajveer singh <rajveer.gang@gmail.com>
+
+Current maintainers:
+
+* Rajveer singh <rajveer.gang@gmail.com>
