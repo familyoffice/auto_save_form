@@ -41,16 +41,16 @@ function auto_save_form_form_alter(&$form, FormStateInterface $form_state, $form
 
 /**
  * Function to get js form id from drupal form id.
- * 
+ *
  * @param string $string
- *   form id to make js form id.
- * 
- * @return type
- *  string.
+ *   Form id to make js form id.
+ *
+ * @return string
+ *   String.
  */
 function _auto_save_form_js_form_id($string = NULL) {
   if ($string) {
     return trim(str_replace("_", "-", $string));
   }
-  return;
+  return "";
 }
