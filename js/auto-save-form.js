@@ -281,11 +281,7 @@
           self.options.onSave.call(self);
         },
 
-        /**
-         * Restore forms data from Local Storage
-         *
-         * @return void
-         */
+        // Restore forms data from Local Storage.
         restoreAllData: function () {
           var self = this;
           var restored = false;
@@ -314,14 +310,7 @@
           }
         },
 
-        /**
-         * Restore form field data from local storage
-         *
-         * @param Object field		jQuery form element object
-         * @param String resque	 previously stored fields data
-         *
-         * @return void
-         */
+        // Restore form field data from local storage.
         restoreFieldsData: function (field, resque) {
           if (field.attr('name') === undefined && field.attr('id') === undefined) {
             return false;
@@ -350,14 +339,7 @@
           }
         },
 
-        /**
-         * Bind immediate saving (on typing/checking/changing) field data to local storage when user fills it
-         *
-         * @param Object field		jQuery form element object
-         * @param String prefix	 prefix used as key to store data in local storage
-         *
-         * @return void
-         */
+        // Bind immediate saving (on typing/checking/changing) field data to local storage when user fills it.
         bindSaveDataImmediately: function (field, prefix) {
           var self = this;
           if ('onpropertychange' in field) {
@@ -381,15 +363,7 @@
           }
         },
 
-        /**
-         * Save data to Local Storage and fire callback if defined
-         *
-         * @param String key
-         * @param String value
-         * @param Boolean [true] fireCallback
-         *
-         * @return void
-         */
+        // Save data to Local Storage and fire callback if defined.
         saveToBrowserStorage: function (key, value, fireCallback) {
           var self = this;
 
@@ -406,13 +380,7 @@
           }
         },
 
-        /**
-         * Bind saving field data on change
-         *
-         * @param Object field		jQuery form element object
-         *
-         * @return void
-         */
+        // Bind saving field data on change.
         bindSaveDataOnChange: function (field) {
           var self = this;
           field.change(function () {
@@ -420,11 +388,7 @@
           });
         },
 
-        /**
-         * Saving (by timeout) field data to local storage when user fills it
-         *
-         * @return void
-         */
+        // Saving (by timeout) field data to local storage when user fills it.
         saveDataByTimeout: function () {
           var self = this;
           var targetForms = self.targets;
@@ -437,11 +401,7 @@
           })(targetForms), self.options.timeout * 1000);
         },
 
-        /**
-         * Bind release form fields data from local storage on submit/reset form
-         *
-         * @return void
-         */
+        // Bind release form fields data from local storage on submit/reset form.
         bindReleaseData: function () {
           var self = this;
           self.targets.each(function () {
@@ -453,11 +413,7 @@
           });
         },
 
-        /**
-         * Manually release form fields
-         *
-         * @return void
-         */
+        // Manually release form fields.
         manuallyReleaseData: function () {
           var self = this;
           self.targets.each(function () {
@@ -467,14 +423,7 @@
           });
         },
 
-        /**
-         * Bind release form fields data from local storage on submit/resett form
-         *
-         * @param String targetFormIdAndName	a form identifier consists of its id and name glued
-         * @param Object fieldsToProtect		jQuery object contains form fields to protect
-         *
-         * @return void
-         */
+        // Bind release form fields data from local storage on submit/resett form.
         releaseData: function (targetFormIdAndName, fieldsToProtect) {
           var released = false;
           var self = this;
