@@ -232,41 +232,47 @@
                 // Returning non-false is the same as a continue statement in a for loop; it will skip immediately to the next iteration.
                 return true;
               }
-              var prefix = (self.options.locationBased ? self.href : "") + targetFormIdAndName + getElementIdentifier(field) + self.options.customKeySuffix;
+              var prefix = (self.options.locationBased ? self.href : '') + targetFormIdAndName + getElementIdentifier(field) + self.options.customKeySuffix;
               var value = field.val();
 
               if (field.is(':checkbox')) {
                 var name = field.attr('name');
                 if (name !== undefined && name.indexOf('[') !== -1) {
-                  if (multiCheckboxCache[ name ] === true) {
+                  if (multiCheckboxCache[name] === true) {
                     return;
                   }
                   value = [];
                   $("[name='" + name + "']:checked").each(function () {
                     value.push($(this).val());
                   });
-                  multiCheckboxCache[ name ] = true;
-                } else {
-                  value = field.is(":checked");
+                  multiCheckboxCache[name] = true;
+                }
+                else {
+                  value = field.is(':checked');
                 }
                 self.saveToBrowserStorage(prefix, value, false);
-              } else if (field.is(":radio")) {
-                if (field.is(":checked")) {
+              }
+              else if (field.is(':radio')) {
+                if (field.is(':checked')) {
                   value = field.val();
                   self.saveToBrowserStorage(prefix, value, false);
-                } else {
+                }
+                else {
                   self.browserStorage.remove(prefix);
                 }
-              } else {
+              }
+              else {
                 if (self.isCKEditorExists()) {
-                  var editor = CKEDITOR.instances[ field.attr("name") ] || CKEDITOR.instances[ field.attr("id") ];
+                  var editor = CKEDITOR.instances[field.attr('name')] || CKEDITOR.instances[field.attr('id')];
                   if (editor) {
                     editor.updateElement();
                     self.saveToBrowserStorage(prefix, field.val(), false);
-                  } else {
+                  }
+                  else {
                     self.saveToBrowserStorage(prefix, value, false);
                   }
-                } else {
+                }
+                else {
                   self.saveToBrowserStorage(prefix, value, false);
                 }
               }
@@ -317,25 +323,29 @@
          * @return void
          */
         restoreFieldsData: function (field, resque) {
-          if (field.attr("name") === undefined && field.attr("id") === undefined) {
+          if (field.attr('name') === undefined && field.attr('id') === undefined) {
             return false;
           }
-          var name = field.attr("name");
-          if (field.is(":checkbox") && resque !== "false" && (name === undefined || name.indexOf("[") === -1)) {
+          var name = field.attr('name');
+          if (field.is(':checkbox') && resque !== 'false' && (name === undefined || name.indexOf('[') === -1)) {
             // If we aren't named by name (e.g. id) or we aren't in a multiple element field
-            field.prop("checked", true);
-          } else if (field.is(":checkbox") && resque === "false" && (name === undefined || name.indexOf("[") === -1)) {
+            field.prop('checked', true);
+          }
+          else if (field.is(':checkbox') && resque === 'false' && (name === undefined || name.indexOf('[') === -1)) {
             // If we aren't named by name (e.g. id) or we aren't in a multiple element field
-            field.prop("checked", false);
-          } else if (field.is(":radio")) {
+            field.prop('checked', false);
+          }
+          else if (field.is(':radio')) {
             if (field.val() === resque) {
-              field.prop("checked", true);
+              field.prop('checked', true);
             }
-          } else if (name === undefined || name.indexOf("[") === -1) {
+          }
+          else if (name === undefined || name.indexOf('[') === -1) {
             // If we aren't named by name (e.g. id) or we aren't in a multiple element field
             field.val(resque);
-          } else {
-            resque = resque.split(",");
+          }
+          else {
+            resque = resque.split(',');
             field.val(resque);
           }
         },
@@ -354,13 +364,14 @@
             field.get(0).onpropertychange = function () {
               self.saveToBrowserStorage(prefix, field.val());
             };
-          } else {
+          }
+          else {
             field.get(0).oninput = function () {
               self.saveToBrowserStorage(prefix, field.val());
             };
           }
           if (this.isCKEditorExists()) {
-            var editor = CKEDITOR.instances[ field.attr("name") ] || CKEDITOR.instances[ field.attr("id") ];
+            var editor = CKEDITOR.instances[field.attr('name')] || CKEDITOR.instances[field.attr('id')];
             if (editor) {
               editor.document.on('keyup', function () {
                 editor.updateElement();
@@ -436,7 +447,7 @@
           self.targets.each(function () {
             var target = $(this);
             var formIdAndName = getElementIdentifier(target);
-            $(this).bind("submit reset", function () {
+            $(this).bind('submit reset', function () {
               self.releaseData(formIdAndName, self.findFieldsToProtect(target));
             });
           });
