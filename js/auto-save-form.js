@@ -16,7 +16,7 @@
 (function ($) {
 
   function getElementIdentifier(el) {
-    return '[id=' + el.attr("id") + '][name=' + el.attr("name") + ']';
+    return '[id=' + el.attr('id') + '][name=' + el.attr('name') + ']';
   }
 
   $.fn.autosaveform = function (options) {
