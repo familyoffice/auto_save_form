@@ -38,7 +38,7 @@
     }
     try {
       return localStorage.getItem;
-    } 
+    }
     catch (e) {
       return false;
     }
@@ -46,11 +46,11 @@
 
   // Set data to browser storage.
   browserStorage.set = function (key, value) {
-    if (typeof $.jStorage === "object") {
-      $.jStorage.set(key, value + "");
+    if (typeof $.jStorage === 'object') {
+      $.jStorage.set(key, value + '');
     } else {
       try {
-        localStorage.setItem(key, value + "");
+        localStorage.setItem(key, value + '');
       }
       catch (e) {
         //QUOTA_EXCEEDED_ERR
@@ -58,15 +58,9 @@
     }
   };
 
-  /**
-   * Get data from browser storage by specified key
-   *
-   * @param [String] key
-   *
-   * @return string
-   */
+  // Get data from browser storage by specified key.
   browserStorage.get = function (key) {
-    if (typeof $.jStorage === "object") {
+    if (typeof $.jStorage === 'object') {
       var result = $.jStorage.get(key);
       return result ? result.toString() : result;
     } else {
@@ -74,15 +68,9 @@
     }
   };
 
-  /**
-   * Delete data from browser storage by specified key
-   *
-   * @param [String] key
-   *
-   * @return void
-   */
+  // Delete data from browser storage by specified key.
   browserStorage.remove = function (key) {
-    if (typeof $.jStorage === "object") {
+    if (typeof $.jStorage === 'object') {
       $.jStorage.deleteKey(key);
     } else {
       localStorage.removeItem(key);
