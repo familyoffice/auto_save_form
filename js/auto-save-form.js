@@ -48,7 +48,8 @@
   browserStorage.set = function (key, value) {
     if (typeof $.jStorage === 'object') {
       $.jStorage.set(key, value + '');
-    } else {
+    }
+    else {
       try {
         localStorage.setItem(key, value + '');
       }
@@ -63,7 +64,8 @@
     if (typeof $.jStorage === 'object') {
       var result = $.jStorage.get(key);
       return result ? result.toString() : result;
-    } else {
+    }
+    else {
       return localStorage.getItem(key);
     }
   };
@@ -72,7 +74,8 @@
   browserStorage.remove = function (key) {
     if (typeof $.jStorage === 'object') {
       $.jStorage.deleteKey(key);
-    } else {
+    }
+    else {
       localStorage.removeItem(key);
     }
   };
@@ -95,17 +98,11 @@
           return this.identifier;
         },
 
-        /**
-         * Set plugin initial options
-         *
-         * @param [Object] options
-         *
-         * @return void
-         */
+        // Set plugin initial options.
         setInitialOptions: function (options) {
           var defaults = {
             excludeFields: [],
-            customKeySuffix: "",
+            customKeySuffix: '',
             locationBased: false,
             timeout: 0,
             autoRelease: true,
@@ -119,26 +116,14 @@
           this.browserStorage = browserStorage;
         },
 
-        /**
-         * Set plugin options
-         *
-         * @param [Object] options
-         *
-         * @return void
-         */
+        // Set plugin options.
         setOptions: function (options) {
           this.options = this.options || this.setInitialOptions(options);
           this.options = $.extend(this.options, options);
         },
 
-        /**
-         * Protect specified forms, store it's fields data to local storage and restore them on page load
-         *
-         * @param [Object] targets		forms object(s), result of jQuery selector
-         * @param Object options			plugin options
-         *
-         * @return void
-         */
+        // Protect specified forms, store it's fields data to local storage. 
+        // And restore them on page load.
         protect: function (targets, options) {
           this.setOptions(options);
           targets = targets || {};
