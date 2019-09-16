@@ -1,5 +1,5 @@
 name: 'Auto Save Form'
 type: module
-description: 'Auto save form'
+description: 'enable auto save functionality for forms.'
 core: 8.x
 package: 'Custom'
