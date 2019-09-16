@@ -34,4 +34,5 @@ MAINTAINERS
 
 Current maintainers:
 
-* Rajveer singh <rajveer.gang@gmail.com>
+* Rajveer singh
+   rajveer.gang@gmail.com
