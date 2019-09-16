@@ -54,7 +54,7 @@
         localStorage.setItem(key, value + '');
       }
       catch (e) {
-        //QUOTA_EXCEEDED_ERR
+      //QUOTA_EXCEEDED_ERR
       }
     }
   };
@@ -122,7 +122,7 @@
           this.options = $.extend(this.options, options);
         },
 
-        // Protect specified forms, store it's fields data to local storage. 
+        // Protect specified forms, store it's fields data to local storage.
         // And restore them on page load.
         protect: function (targets, options) {
           this.setOptions(options);
@@ -131,7 +131,8 @@
           this.targets = this.targets || [];
           if (self.options.name) {
             this.href = self.options.name;
-          } else {
+          }
+          else {
             this.href = location.hostname + location.pathname + location.search + location.hash;
           }
           this.targets = $.merge(this.targets, targets);
@@ -179,18 +180,14 @@
         },
 
         isCKEditorExists: function () {
-          return typeof CKEDITOR !== "undefined";
+          return typeof CKEDITOR !== 'undefined';
         },
 
         findFieldsToProtect: function (target) {
-          return target.find(":input").not(":submit").not(":reset").not(":button").not(":file").not(":password").not(":disabled").not("[readonly]");
+          return target.find(':input').not(':submit').not(':reset').not(':button').not(':file').not(':password').not('disabled').not('[readonly]');
         },
 
-        /**
-         * Bind saving data
-         *
-         * @return void
-         */
+        // Bind saving data.
         bindSaveData: function () {
           var self = this;
 
@@ -217,13 +214,10 @@
           });
         },
 
-        /**
-         * Save all protected forms data to Local Storage.
-         * Common method, necessary to not lead astray user firing 'data is saved' when select/checkbox/radio
-         * is changed and saved, while text field data is saved only by timeout
-         *
-         * @return void
-         */
+        // Save all protected forms data to Local Storage.
+        // Common method, necessary to not lead astray user firing data is saved
+        // when select/checkbox/radio is changed and saved, while text field
+        // data is saved only by timeout.
         saveAllData: function () {
           var self = this;
           self.targets.each(function () {
@@ -239,9 +233,9 @@
               var prefix = (self.options.locationBased ? self.href : "") + targetFormIdAndName + getElementIdentifier(field) + self.options.customKeySuffix;
               var value = field.val();
 
-              if (field.is(":checkbox")) {
-                var name = field.attr("name");
-                if (name !== undefined && name.indexOf("[") !== -1) {
+              if (field.is(':checkbox')) {
+                var name = field.attr('name');
+                if (name !== undefined && name.indexOf('[') !== -1) {
                   if (multiCheckboxCache[ name ] === true) {
                     return;
                   }
