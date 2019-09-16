@@ -375,7 +375,7 @@
           // if fireCallback is undefined it should be true
           fireCallback = fireCallback === undefined ? true : fireCallback;
           this.browserStorage.set(key, value);
-          if (fireCallback && value !== "") {
+          if (fireCallback && value !== '') {
             this.options.onSave.call(this);
           }
         },
@@ -429,7 +429,7 @@
           var self = this;
 
           // Released form, are not started anymore. Fix for ajax loaded forms.
-          params.started[ self.getInstanceIdentifier() ] = false;
+          params.started[self.getInstanceIdentifier()] = false;
 
           fieldsToProtect.each(function () {
             if ($.inArray(this, self.options.excludeFields) !== -1) {
@@ -437,7 +437,7 @@
               return true;
             }
             var field = $(this);
-            var prefix = (self.options.locationBased ? self.href : "") + targetFormIdAndName + getElementIdentifier(field) + self.options.customKeySuffix;
+            var prefix = (self.options.locationBased ? self.href : '') + targetFormIdAndName + getElementIdentifier(field) + self.options.customKeySuffix;
             self.browserStorage.remove(prefix);
             released = true;
           });
@@ -452,15 +452,15 @@
 
     return {
       getInstance: function (identifier) {
-        if (!params.instantiated[ identifier ]) {
-          params.instantiated[ identifier ] = init();
-          params.instantiated[ identifier ].setInstanceIdentifier(identifier);
-          params.instantiated[ identifier ].setInitialOptions();
+        if (!params.instantiated[identifier]) {
+          params.instantiated[identifier] = init();
+          params.instantiated[identifier].setInstanceIdentifier(identifier);
+          params.instantiated[identifier].setInitialOptions();
         }
         if (identifier) {
-          return params.instantiated[ identifier ];
+          return params.instantiated[identifier];
         }
-        return params.instantiated[ identifier ];
+        return params.instantiated[identifier];
       },
 
       free: function () {
