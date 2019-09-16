@@ -4,6 +4,7 @@
  * @file
  * Contains auto_save_form.module.
  */
+
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Form\FormStateInterface;
 
@@ -24,7 +25,7 @@ function auto_save_form_help($route_name, RouteMatchInterface $route_match) {
 }
 
 /**
- *  Implements hook_form_alter().
+ * Implements hook_form_alter().
  */
 function auto_save_form_form_alter(&$form, FormStateInterface $form_state, $form_id) {
   $config_auto_save_form_ids = \Drupal::config('auto_save_form.autosaveformsid')->get('form_ids');
@@ -39,7 +40,7 @@ function auto_save_form_form_alter(&$form, FormStateInterface $form_state, $form
 }
 
 /**
- * Function to get js form id from drupla form id.
+ * Function to get js form id from drupal form id.
  * 
  * @param string $string
  *   form id to make js form id.
