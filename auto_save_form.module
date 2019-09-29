@@ -17,7 +17,9 @@ function auto_save_form_help($route_name, RouteMatchInterface $route_match) {
     case 'help.page.auto_save_form':
       $output = '';
       $output .= '<h3>' . t('About') . '</h3>';
-      $output .= '<p>' . t('This module auto save form in localstorage.') . '</p>';
+      $output .= '<p>' . t('This module enables functionality to persist form\'s data in browser\'s local
+storage and never lose it on occasional tabs closing, browser crashes and other
+disasters!.') . '</p>';
       return $output;
 
     default:

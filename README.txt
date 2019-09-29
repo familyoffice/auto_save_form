@@ -17,7 +17,7 @@ This module not requires the any module.
 CONFIGURATION
 -------------
 
-Goto /admin/config/auto_save_form/autosaveformsid of your drupal installation
+Goto /admin/config/content/autosaveformsid of your drupal installation
    enter comma separated drupal form ids
 
 INSTALLATION

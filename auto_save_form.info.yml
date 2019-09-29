@@ -2,4 +2,4 @@ name: 'Auto Save Form'
 type: module
 description: 'enable auto save functionality for forms.'
 core: 8.x
-package: 'Custom'
+configure: auto_save_form.auto_save_forms_id_form
