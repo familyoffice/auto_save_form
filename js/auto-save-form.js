@@ -9,6 +9,14 @@
       form_ids.forEach(function (index, value) {
         $('#' + index).autosaveform();
       });
+      //Fix for ckeditor
+      for (var i in CKEDITOR.instances) {
+        CKEDITOR.instances[i].on('change', function () {
+          if (form_ids.indexOf($($(CKEDITOR.instances["edit-body-0-value"].element.$.form)).find("input[name=form_id]").val().replaceAll("_", "-") !== false)) {
+            jQuery("#" + CKEDITOR.instances[i].name).val(CKEDITOR.instances[i].getData()).trigger("change");
+          }
+        });
+      }
     }
   };
 })(jQuery, Drupal, drupalSettings);

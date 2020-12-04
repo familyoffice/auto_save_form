@@ -39,6 +39,7 @@ class AutoSaveFormsIdForm extends ConfigFormBase {
     $form['names_fieldset'] = [
         '#type' => 'fieldset',
         '#title' => $this->t('Form Ids'),
+        '#description' => $this->t("if you are adding entity form, Please do not forget to add edit form id too."),
         '#prefix' => "<div id='names-fieldset-wrapper'>",
         '#suffix' => '</div>',
     ];
