@@ -6,7 +6,7 @@ use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
- * Class AutoSaveFormsIdForm.
+ * Provide a configuration form for auto_save_form.
  */
 class AutoSaveFormsIdForm extends ConfigFormBase {
 
@@ -15,7 +15,7 @@ class AutoSaveFormsIdForm extends ConfigFormBase {
    */
   protected function getEditableConfigNames() {
     return [
-        'auto_save_form.autosaveformsid',
+      'auto_save_form.autosaveformsid',
     ];
   }
 
@@ -37,11 +37,11 @@ class AutoSaveFormsIdForm extends ConfigFormBase {
     $form['#tree'] = TRUE;
 
     $form['names_fieldset'] = [
-        '#type' => 'fieldset',
-        '#title' => $this->t('Form Ids'),
-        '#description' => $this->t("if you are adding entity form, Please do not forget to add edit form id too."),
-        '#prefix' => "<div id='names-fieldset-wrapper'>",
-        '#suffix' => '</div>',
+      '#type' => 'fieldset',
+      '#title' => $this->t('Form Ids'),
+      '#description' => $this->t("if you are adding entity form, Please do not forget to add edit form id too."),
+      '#prefix' => "<div id='names-fieldset-wrapper'>",
+      '#suffix' => '</div>',
     ];
     $name_field_count = 1;
     if (count($config_field_ids_array)) {
@@ -53,42 +53,42 @@ class AutoSaveFormsIdForm extends ConfigFormBase {
 
     for ($i = 0; $i < $form_state->get('num_names'); $i++) {
       $form['names_fieldset'][$i]['auto_save_form_id'] = [
-          '#type' => 'textfield',
-          '#title' => $this->t('Form ID'),
-          '#maxlength' => 64,
-          '#size' => 64,
-          '#default_value' => isset($config_field_ids_array[$i]) ? $config_field_ids_array[$i] : NULL,
-          '#description' => $this->t("Please enter form id"),
+        '#type' => 'textfield',
+        '#title' => $this->t('Form ID'),
+        '#maxlength' => 64,
+        '#size' => 64,
+        '#default_value' => isset($config_field_ids_array[$i]) ? $config_field_ids_array[$i] : NULL,
+        '#description' => $this->t("Please enter form id"),
       ];
     }
     $form['names_fieldset']['actions'] = [
-        '#type' => 'actions',
+      '#type' => 'actions',
     ];
     $form['names_fieldset']['actions']['add_name'] = [
-        '#type' => 'submit',
-        '#value' => $this->t('Add one more'),
-        '#submit' => ['::addOne'],
-        '#ajax' => [
-            'callback' => '::addmoreCallback',
-            'wrapper' => "names-fieldset-wrapper",
-        ],
+      '#type' => 'submit',
+      '#value' => $this->t('Add one more'),
+      '#submit' => ['::addOne'],
+      '#ajax' => [
+        'callback' => '::addmoreCallback',
+        'wrapper' => "names-fieldset-wrapper",
+      ],
     ];
     if ($form_state->get('num_names') > 1) {
       $form['names_fieldset']['actions']['remove_name'] = [
-          '#type' => 'submit',
-          '#value' => $this->t('Remove one'),
-          '#submit' => ['::removeCallback'],
-          '#ajax' => [
-              'callback' => '::addmoreCallback',
-              'wrapper' => "names-fieldset-wrapper",
-          ],
+        '#type' => 'submit',
+        '#value' => $this->t('Remove one'),
+        '#submit' => ['::removeCallback'],
+        '#ajax' => [
+          'callback' => '::addmoreCallback',
+          'wrapper' => "names-fieldset-wrapper",
+        ],
       ];
     }
     $form_state->setCached(FALSE);
 
     $form['submit'] = [
-        '#type' => 'submit',
-        '#value' => $this->t('Submit'),
+      '#type' => 'submit',
+      '#value' => $this->t('Submit'),
     ];
 
     return $form;
@@ -138,9 +138,9 @@ class AutoSaveFormsIdForm extends ConfigFormBase {
     foreach ($form_state->getValue(['names_fieldset']) as $key => $value) {
       if (is_numeric($key)) {
         $config_value = $form_state->getValue([
-            'names_fieldset',
-            $key,
-            'auto_save_form_id',
+          'names_fieldset',
+          $key,
+          'auto_save_form_id',
         ]);
         if (!empty($config_value)) {
           $configArray[] = $config_value;
@@ -149,6 +149,8 @@ class AutoSaveFormsIdForm extends ConfigFormBase {
     }
     $config->set('form_ids', implode(",", array_unique($configArray)));
     $config->save();
+
+    parent::submitForm($form, $form_state);
   }
 
 }
