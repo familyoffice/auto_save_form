@@ -7,7 +7,15 @@
     attach: function (context, settings) {
       var form_ids = drupalSettings.auto_save.form_ids;
       form_ids.forEach(function (index, value) {
-        $('#' + index).autosaveform();
+        // Enable autosaveform if the form is present.
+        if ($('#' + index).length) {
+          // Check if script has already run.
+          if (!$('#' + index).hasClass('js-auto-save-form-processed')) {
+            // Add state class to indicate script has run.
+            $('#' + index).addClass('js-auto-save-form-processed');
+            $('#' + index).autosaveform();
+          }
+        }
       });
       //Fix for ckeditor
       for (var i in CKEDITOR.instances) {
