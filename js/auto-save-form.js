@@ -116,7 +116,17 @@
             autoRelease: true,
             onBeforeSave: function () {},
             onSave: function () {},
-            onBeforeRestore: function () {},
+            onBeforeRestore: function () {
+              // If there is autosaved data, confirm that the user wishes to restore from autosave.
+              if (this.isDataAvailable()) {
+                // TODO: Allow this message to be configured in settings.
+                if (!confirm("Do you wish to restore auto-saved data? If you cancel, auto-saved data will be cleared and data from the database (if any) will be used instead.")) {
+                  // If not, clear the stored data.
+                  this.manuallyReleaseData();
+                  return false;
+                }
+              }
+            },
             onRestore: function () {},
             onRelease: function () {}
           };
@@ -191,6 +201,29 @@
 
         isCKEditorExists: function () {
           return typeof CKEDITOR !== 'undefined';
+        },
+        
+        // A function to check if there is autosaved data for the current form.
+        isDataAvailable: function () {
+          var self = this;
+          // Identify jQuery object of the form element.
+          var selfForm = $(this.targets[0]);
+          // Set default return value.
+          var isAvailable = false;
+          // Get the hidden form field that holds the form ID.
+          var idField = selfForm.find("input[name=form_id]").eq(0);
+          if (idField) {
+            // Get the value of the form ID field.
+            var selfId = idField.val();
+            // Get any autosaved form id data
+            var formIdAndName = getElementIdentifier(selfForm);
+            var prefix = (self.options.locationBased ? self.href : '') + formIdAndName + getElementIdentifier(idField) + self.options.customKeySuffix;
+            var savedId = self.browserStorage.get(prefix);
+            if (savedId === selfId) {
+              isAvailable = true;
+            }
+          }
+          return isAvailable;
         },
 
         findFieldsToProtect: function (target) {
