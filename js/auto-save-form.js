@@ -32,7 +32,24 @@
 (function ($) {
 
   function getElementIdentifier(el) {
-    return '[id=' + el.attr('id') + '][name=' + el.attr('name') + ']';
+    var identifier = '';
+    var selector = el.attr('data-drupal-selector') ? '[selector=' + el.attr('data-drupal-selector') + ']' : '';
+    var name = el.attr('name') ? '[name=' + el.attr('name') + ']' : '';
+    var action = '';
+    // Only <forms> will have actions. Action will be blank for other elements.
+    if (el.attr('action')) {
+      if (el.attr('action').indexOf('?') === -1) {
+        action = '[action=' + window.location.origin + el.attr('action') + ']';
+      }
+      else {
+        action = '[action=' + window.location.origin + el.attr('action').slice(0,el.attr('action').indexOf('?')) + ']'
+      }
+      // Add user ID to <form> identifier for additional uniqueness.
+      action += '[uid=' + drupalSettings.auto_save.user_id + ']';
+    }
+
+    identifier += (name !== '') ? name + action : selector + action;
+    return identifier;
   }
 
   $.fn.autosaveform = function (options) {

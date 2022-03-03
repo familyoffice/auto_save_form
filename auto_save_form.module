@@ -34,9 +34,11 @@ function auto_save_form_form_alter(&$form, FormStateInterface $form_state, $form
   if (!empty($config_auto_save_form_ids)) {
     $form_ids = array_map('trim', explode(",", $config_auto_save_form_ids));
     if (in_array($form_id, $form_ids)) {
+      $user_id = \Drupal::currentUser()->id();
       $js_form_ids = array_map('_auto_save_form_js_form_id', explode(",", $config_auto_save_form_ids));
       $form['#attached']['library'][] = 'auto_save_form/auto_save_form';
       $form['#attached']['drupalSettings']['auto_save']['form_ids'] = $js_form_ids;
+      $form['#attached']['drupalSettings']['auto_save']['user_id'] = $user_id;
     }
   }
 }
